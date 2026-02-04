@@ -1,4 +1,4 @@
-name: FRONTEND CI PIPELINE
+name: FRONTEND SERVICE CI PIPELINE
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: LOGIN TO DOCKER HUB
         uses: docker/login-action@v3
         with:
-         username: ${{ vars.DOCKERHUB_USERNAME }}   # same as your goldrate setup
+         username: ${{ vars.DOCKERHUB_USERNAME }}   
          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: BUILD DOCKER IMAGE

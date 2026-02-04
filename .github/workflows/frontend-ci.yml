@@ -1,0 +1,34 @@
+name: FRONTEND CI
+
+on:
+push:
+  branches:
+    - main
+  permissions:
+    contents: read
+    id_token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: LOGIN TO DOCKER HUB
+        uses: docker/login-action@v3
+        with:
+         username: ${{ vars.DOCKERHUB_USERNAME }}   # same as your goldrate setup
+         password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: BUILD DOCKER IMAGE
+        run: |
+          docker build -t ujjwal1124/frontend-service:$GITHUB_RUN_ID .
+
+      - name: PUSH DOCKER IMAGE
+        run: |
+          docker push ujjwal1124/frontend-service:$GITHUB_RUN_ID
+
+
+     

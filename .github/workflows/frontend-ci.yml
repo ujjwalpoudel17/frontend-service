@@ -1,12 +1,12 @@
 name: FRONTEND CI PIPELINE
 
 on:
-push:
-  branches:
-    - master
-  permissions:
-    contents: read
-    id_token: write
+  push:
+    branches:
+      - master
+    permissions:
+      contents: read
+      id_token: write
 
 jobs:
   build:
